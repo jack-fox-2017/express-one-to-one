@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form action="/users/editusers/<%=input[0].id%>" method="post">
+      Name :<br>
+      <input type="text" name="username" value="<%=input[0].username%>">
+      <br>
+      Company :<br>
+      <input type="text" name="firstname"
+      value="<%=input[0].firstname%>">
+      <br>
+      Telephone :<br>
+      <input type="text" name="lastname"
+      value="<%=input[0].lastname%>">
+      <br>
+      Email :<br>
+      <input type="text" name="email"
+      value="<%=input[0].email%>">
+      <br>
+    <button type="submit" name="Button">submit</button>
+    </form>
+  </body>
+</html>
