@@ -86,8 +86,8 @@ app.get('/profiles', (req, res) => {
 })
 
 app.post('/profiles', (req, res) => {
-  db.all(`select * from Profile where ContactId=${req.body.ContactId} OR username='${req.body.username}'`, (err, data) => {
-    if(err){
+  db.all(`select * from Profile where ContactId=${req.body.ContactId} OR username='${req.body.username}'`, (err, cekProfil) => {
+    if(cekProfil.length == 0){
       db.run(`INSERT INTO Profile (username, password, firstname, lastname, ContactId) VALUES ('${req.body.username}', '${req.body.password}', '${req.body.firstname}', '${req.body.lastname}', ${req.body.ContactId})`)
       res.redirect('/profiles')
     } else {

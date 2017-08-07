@@ -19,7 +19,7 @@
         <input type="text" name="firstname" placeholder="Achim" class="form-control">
         <input type="text" name="lastname" placeholder="ex: Baggins" class="form-control">
         <select  name="ContactId" class="form-control">
-          <option value="" disabled selected>select a Contact</option>
+          <option value="" disabled selected>select Contact</option>
 
           <% kontak.forEach(getData => { %>
             <option value="<%= getData.id %>"><%= getData.name %></option>

@@ -9,7 +9,7 @@ db.serialize(function() {
   db.run(`CREATE TABLE if not exists 'Grup' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'name' text)`)
   console.log('Group Table Created!');
 
-  db.run(`CREATE TABLE if not exists 'Profile' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'username' text, 'password' text, 'firstname' text, 'lastname' text, 'ContactId' INTEGER, FOREIGN KEY(ContactId) REFERENCES Contact(id))`);
+  db.run(`CREATE TABLE if not exists 'Profile' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'username' text, 'password' text, 'firstname' text, 'lastname' text, 'ContactId' INTEGER, FOREIGN KEY(ContactId) REFERENCES Contact(id), UNIQUE(ContactId))`);
   console.log('Profile Table Created!');
 
   db.run(`CREATE TABLE if not exists 'Address' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'address' text, 'city' text, 'zipcode' INTEGER, 'ContactId' INTEGER, FOREIGN KEY(ContactId) REFERENCES Contact(id))`);
