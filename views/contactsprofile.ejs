@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div>
+      <table border="1">
+        <tr>
+          <th>Name</th>
+          <th>Company</th>
+          <th>No. Telp</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Id Contacts</th>
+        </tr>
+        <% data.forEach(d => {%>
+          <tr>
+            <td><%= d.first_name %> <%= d.last_name %></td>
+            <td><%= d.company %></td>
+            <td><%= d.telp_number %></td>
+            <td><%= d.email %></td>
+            <td><%= d.username%></td>
+            <td><%= d.password%></td>
+            <td><%= d.contact_id%></td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+
+  </body>
+</html>

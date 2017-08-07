@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>address</title>
+  </head>
+  <body>
+    <h1>Address</h1>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>Zip Code</th>
+        <th>Province</th>
+        <th>Action</th>
+      </tr>
+      <% data.forEach(d => { %>
+        <tr>
+          <td>
+            <%= d.id %>
+          </td>
+          <td>
+            <%= d.street %>
+          </td>
+          <td>
+            <%= d.city %>
+          </td>
+          <td>
+            <%= d.zip_code %>
+          </td>
+          <td>
+            <%= d.province %>
+          </td>
+          <td>
+            <a href="/address/edit/<%= d.id %>"><button type="button" name="button">Edit</button></a>
+            <a href="/address/delete/<%= d.id %>"><button type="button" name="button">Delete</button></a>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+    <form class="" action="/address" method="post">
+      <label>Street:</label>
+      <input type="text" name="street" placeholder="Input Your Street">
+      <label>City:</label>
+      <input type="text" name="city" placeholder="Input Your City">
+      <label>Zip Code:</label>
+      <input type="text" name="zip_code" placeholder="Input Your Zip Code">
+      <label>Province</label>
+      <input type="text" name="province" placeholder="Input Your Province">
+      <button type="submit" name="button">Submit</button>
+    </form>
+    <a href="/"><button type="button" name="button">Home</button></a>
+  </body>
+</html>

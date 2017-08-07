@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>profiles</title>
+  </head>
+  <body>
+    <h1>Profiles</h1>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Id Account</th>
+        <th>User Name</th>
+        <th>Password</th>
+        <th>Contact Id</th>
+        <th>Action</th>
+      </tr>
+      <% data.forEach(d => { %>
+        <tr>
+          <td>
+            <%= d.id %>
+          </td>
+          <td>
+            <%= d.id_name %>
+          </td>
+          <td>
+            <%= d.username %>
+          </td>
+          <td>
+            <%= d.password %>
+          </td>
+          <td>
+            <a href="/profiles/edit/<%= d.id %>"><button type="button" name="button">Edit</button></a>
+            <a href="/profiles/delete/<%= d.id %>"><button type="button" name="button">Delete</button></a>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+    <form action="/profiles" method="post">
+      <label>Id Account</label>
+      <input type="text" name="id_name" placeholder="Input Your Id Account">
+      <label>User Name</label>
+      <input type="text" name="username" placeholder="Input Your Username">
+      <label>Password</label>
+      <input type="text" name="password" placeholder="Input Your Password">
+      <label>Contacts</label>
+      <select class="" name="contact_id">
+      <label>Contacts Id</label>
+        <% datacont.forEach(d => { %>
+          <option value="<%= d.id %>">
+            <%= d.id %>. <%= d.first_name %> <%= d.last_name %>
+          </option>
+        <% }) %>
+      </select>
+      <button type="submit" name="button">Submit</button>
+    </form>
+      <a href="/"><button type="button" name="button">Home</button></a>
+  </body>
+</html>
+ini last name = <%= datacont[0].last_name%>
