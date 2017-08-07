@@ -109,8 +109,19 @@ app.get('/profiles/:id/edit', (req, res) => {
 })
 
 app.post('/profiles/:id/edit', (req, res) => {
-      db.run(`UPDATE Profile set  password='${req.body.password}', firstname='${req.body.firstname}', lastname='${req.body.lastname}' where id=${req.params.id}`)
+  db.all(`select * from Profile where ContactId=${req.body.ContactId} OR username='${req.body.username}'`, (err, cekProfil) => {
+    // res.send(cekProfil)
+    if(cekProfil.length == 1){
+      db.run(`UPDATE Profile set  username='${req.body.username}', password='${req.body.password}', firstname='${req.body.firstname}', lastname='${req.body.lastname}' where id=${req.params.id}`)
       res.redirect('/profiles')
+    } else {
+      db.all(`select * from Profile where id=${req.params.id}`, (err, data) => {
+        db.all(`select * from Contact`, (err, dataKontak) => {
+          res.render('profile-edit', {dataProfile: data[0], dataKontak: dataKontak, pesan: 'Contact Id sudah terdaftar!!!'})
+        })
+      })
+    }
+  })
 })
 
 app.get('/profiles/:id/delete', (req, res) => {
