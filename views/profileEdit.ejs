@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>UBAH PROFILE</h2><br>
+    <a href="/">HOME</a>
+    <a href="/users">USERS</a>
+    <a href="/profile">BACK TO PROFILE</a>
+    <form action="/profile/edit/<%= data.user_id %>" method="post">
+      <p>HOME TOWN</p>
+      <input type="text" name="hometown" value="<%= data.hometown %>">
+      <p>BIRTH YEAR</p>
+      <input type="text" name="birth_year" value="<%= data.birth_year %>">
+      <p>STATUS</p>
+      <input type="text" name="relationship_status" value="<%= data.relationship_status %>">
+      <p>USER ID</p>
+      <select name="user_id" value="<%= data.username %>" >
+        <% data2.forEach(b=>{ %>
+          <option value="<%= b.id %>"><%= b.username %></option>
+        <% }) %>
+      </select><br><br>
+      <button type="submit" name="submit">save</button>
+    </form>
+  </body>
+</html>

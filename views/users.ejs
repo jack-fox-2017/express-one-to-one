@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>CRUD users</h2>
+    <a href="/">HOME</a>
+    <a href="/profile">PROFILE</a>
+    <a href="/users">USERS</a>
+
+    <br><br>
+    <form class="" action="/users" method="post">
+      <input type="text" name="username" placeholder="user name...">
+      <input type="text" name="firstname" placeholder="first name...">
+      <input type="text" name="lastname" placeholder="last name...">
+      <input type="text" name="email" placeholder="email....">
+      <button type="submit" name="submit">Tambah</button>
+    </form><br>
+    <table border="2">
+        <tr>
+          <th>ID</th>
+          <th>USER NAME</th>
+          <th>FIRST NAME</th>
+          <th>LAST NAME</th>
+          <th>EMAIL</th>
+          <th colspan="2">ACTION</th>
+        </tr>
+      <% data.forEach(d => { %>
+        <tr>
+          <td><%= d.id %></td>
+          <td><%= d.username %></td>
+          <td><%= d.firstname %></td>
+          <td><%= d.lastname %></td>
+          <td><%= d.email %></td>
+          <td>
+            <a href="/users/edit/<%= d.id %>">Edit</a>
+          </td>
+          <td>
+            <a href="/users/delete/<%= d.id %>">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
