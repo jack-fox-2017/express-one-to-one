@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="">
+      <div style="float:left;width:33%;text-align:center">
+        <h1><a href="/users">Users</a></h1>
+      </div>
+      <div style="float:left;width:33%;text-align:center">
+        <h1><a href="/Profiles">Profiles</a></h1>
+      </div>
+      <div style="float:left;width:33%;text-align:center">
+        <h1>........</h1>
+      </div>
+    </div>
+    <div>
+      <form  action="/users/edit/<%= data[0].id%>" method="post">
+        <input type="text" name="user_name" value="<%=data[0].user_name%>"><br>
+        <input type="text" name="first_name" value="<%=data[0].first_name%>"><br>
+        <input type="text" name="last_name" value="<%=data[0].last_name%>"><br>
+        <input type="email" name="email" value="<%=data[0].email%>"><br>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </body>
+</html>
