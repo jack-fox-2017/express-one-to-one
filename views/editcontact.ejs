@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>edit contact</title>
+  </head>
+  <body>
+    <h1>Edit Contact</h1>
+    <form action="/contacts/edit/<%= data[0].id %>" method="post">
+      <label>First Name</label>
+      <input type="text" name="first_name" value="<%= data[0].first_name %>">
+      <label>Last Name</label>
+      <input type="text" name="last_name" value="<%= data[0].last_name %>">
+      <label>Company</label>
+      <input type="text" name="company" value="<%= data[0].company %>">
+      <label>Telp Number</label>
+      <input type="text" name="telp_number" value="<%= data[0].telp_number %>">
+      <label>Email</label>
+      <input type="text" name="email" value="<%= data[0].email %>">
+      <button type="submit" name="button">Save</button>
+    </form>
+  </body>
+</html>

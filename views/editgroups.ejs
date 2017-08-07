@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>edit group</title>
+  </head>
+  <body>
+    <h1>Edit Group</h1>
+    <form action="/groups/edit/<%= data[0].id %>" method="post">
+      <label>Groups Name</label>
+      <input type="text" name="name_of_groups" value="<%= data[0].name_of_groups %>">
+      <a href="/groups"><button type="submit" name="button">Save</button></a>
+    </form>
+  </body>
+</html>

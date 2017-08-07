@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>contacts</title>
+  </head>
+  <body>
+    <center><h1>Contacts</h1>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Company</th>
+          <th>Number Telp</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+        <% data.forEach(d => { %>
+          <tr>
+            <td>
+              <%= d.id %>
+            </td>
+            <td>
+              <%= d.first_name %> <%= d.last_name %>
+            </td>
+            <td>
+              <%= d.company %>
+            </td>
+            <td>
+              <%= d.telp_number %>
+            </td>
+            <td>
+              <%= d.email %>
+            </td>
+            <td>
+              <a href="/contacts/edit/<%= d.id %>"><button type="button" name="button">Edit</button></a>
+              <a href="/contacts/delete/<%= d.id %>"><button type="button" name="button">Delete</button></a>
+            </td>
+          </tr>
+        <% })%>
+      </table>
+      <center>
+        <form class="/contacts" method="post">
+          <label>First Name:</label>
+          <input type="text" name="first_name" placeholder="Input Your First Name">
+          <label>Last Name:</label>
+          <input type="text" name="last_name" placeholder="Input Your Last Name">
+          <label>Company:</label>
+          <input type="text" name="company" placeholder="Input Company">
+          <label>Telp Number:</label>
+          <input type="text" name="telp_number" placeholder="Input Your Telp Number">
+          <label>Email:</label>
+          <input type="text" name="email" placeholder="input Your Email">
+          <button type="submit" name="button">Submit</button>
+        </form>
+          <a href="/"><button type="button" name="button">Home</button></a>
+  </body>
+</html>
