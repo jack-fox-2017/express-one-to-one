@@ -79,7 +79,7 @@ app.post('/users', function (req, res) {
 
 
 app.get('/profiles', function (req, res) {
-    db.all(`SELECT * FROM profiles`, function (err, rows) {
+    db.all(`SELECT profiles.id, profiles.birth_year, profiles.hometown, profiles.relationship_status, profiles.user_id, users.id as userId, users.username FROM profiles left join users on profiles.user_id=users.id`, function (err, rows) {
         if (!err) {
             res.render('profiles', {
                 dataProfiles: rows,
