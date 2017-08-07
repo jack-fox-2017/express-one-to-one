@@ -17,6 +17,7 @@
           <th>Hometown</th>
           <th>Status</th>
           <th>User ID</th>
+          <th>Username</th>
           <th>Options</th>
         </tr>
       </thead>
@@ -27,6 +28,7 @@
             <td><%= p.hometown %></td>
             <td><%= p.relationship_status %></td>
             <td><%= p.user_id %></td>
+            <td><%= p.username %></td>
             <td><a href="/profiles/edit/<%=p.id%>">Edit</a> | <a href="/profiles/delete/<%=p.id%>">Delete</a></td>
           </tr>
         <% })%>

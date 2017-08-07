@@ -47,6 +47,13 @@ app.get('/users/delete/:id', (req,res) => {
 app.get('/profiles', function(req,res) {
   db.all(`SELECT * FROM Profiles`, (err, profileData) => {
     db.all(`SELECT id,username FROM Users`, (err2, userData) => {
+      for(let i = 0; i < profileData.length; i++){
+          for (var j = 0; j < userData.length; j++) {
+            if(profileData[i].user_id == userData[j].id){
+              profileData[i].username = userData[j].username
+            }
+          }
+        }
       res.render('profiles', {prf: profileData, user:userData, err_msg:false})
     })
   })
@@ -77,6 +84,13 @@ app.post('/profiles', (req,res) => {
             } else {
               db.all(`SELECT * FROM Profiles`, (err, profileData) => {
                 db.all(`SELECT id,username FROM Users`, (err2, userData) => {
+                  for(let i = 0; i < profileData.length; i++){
+                      for (var j = 0; j < userData.length; j++) {
+                        if(profileData[i].user_id == userData[j].id){
+                          profileData[i].username = userData[j].username
+                        }
+                      }
+                    }
                   res.render('profiles', {prf: profileData, user:userData, err_msg: "user sudah ada"})
                 })
               })
