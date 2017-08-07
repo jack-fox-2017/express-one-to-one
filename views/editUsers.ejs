@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  <a href="/">Home</a>   <a href="/users">Users</a>
+  <br><br> 
+        <form action="/users/editUsers/<%=data.id%>" method="post">
+          <fieldset>
+            <legend>Edit Users </legend>
+            Username:<br>
+            <input type="text" name="username" value="<%=data.username%>">
+            <br>
+            firstname:<br>
+            <input type="text" name="firstname" value="<%=data.firstname%>">
+            <br>
+            lastname:<br>
+            <input type="text" name="lastname" value="<%=data.lastname%>">
+            <br>
+            email:<br>
+            <input type="text" name="email" value="<%=data.email%>">
+            <br><br>
+            <button type="submit">Save</button>
+
+  </body>
+</html>
