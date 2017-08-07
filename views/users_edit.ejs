@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>Edit User</h2>
+    <form action="/users/edit/<%= data.id %>" method="post">
+      <input type="text" name="username" placeholder="Username" value="<%= data.username %>">
+      <input type="text" name="firstname" placeholder="First Name" value="<%= data.firstname %>">
+      <input type="text" name="lastname" placeholder="Last Name" value="<%= data.lastname %>">
+      <input type="text" name="email" placeholder="Email"  value="<%= data.email %>">
+      <button type="submit" name="submit">Submit</button>
+    </form><br>
+    <a href="/users">Back</a>
+  </body>
+</html>
