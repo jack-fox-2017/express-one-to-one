@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profiles Edit Form</title>
+  </head>
+  <body>
+  <center>
+    <h2>EDIT PROFILE</h2><br><br>
+    <form action="/profiles/edit/<%= dataProfiles[0].id%>" method="POST">
+    Home Town:<br>
+    <input type="text" name="hometown" value="<%= dataProfiles[0].hometown%>">
+    <br><br>
+    Birth Year:<br>
+    <input type="text" name="birth_year" value="<%= dataProfiles[0].birth_year%>">
+    <br><br>
+    Relationship Status:<br>
+    <input type="text" name="relationship_status" value="<%= dataProfiles[0].relationship_status%>">
+    <br><br>
+    <select name="user_id">
+      <% dataUsers.forEach(data =>{ %>
+        <%
+          var selected = ""
+          if(data.id == dataProfiles.user_id) {
+            selected = "selected"
+          }
+        %>
+        <option value="<%= data.id %>" <%= selected %> >
+          <%= data.username %>
+      </option>
+     <% }) %>
+
+    </select>
+
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+  </center>
+  </body>
+</html>
