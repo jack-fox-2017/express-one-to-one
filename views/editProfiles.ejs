@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <a href="/">Home</a>   <a href="/profiles">Profiles</a>
+    <br><br>
+
+        <form action="/profiles/editProfiles/<%=data.id%>" method="post">
+          <fieldset>
+            <legend>Edit Profiles </legend>
+            Hometown:<br>
+            <input type="text" name="hometown" value="<%=data.hometown%>">
+            <br>
+            Relationship Status:<br>
+            <input type="text" name="relationship_status" value="<%=data.relationship_status%>">
+            <br>
+            User id:<br>
+            <select type="text" name="user_id">
+              <%data2.forEach(d => { %>
+            <option value="<%=d.id%>">
+                <%=d.id%> . <%=d.username%>
+            </option>
+              <%})%>
+            </select>
+            <br><br>
+            <button type="submit">Save</button>
+
+  </body>
+</html>
