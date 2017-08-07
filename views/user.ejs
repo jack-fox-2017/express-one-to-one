@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>user</title>
+  </head>
+  <body>
+    <h1>
+      <table border="2">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%var i = 1%>
+          <% dataU.forEach(d => { %>
+            <tr>
+              <th><%=d.id%></th>
+              <th><%= d.username %></th>
+              <th><%= d.firstname %></th>
+              <th><%= d.lastname %></th>
+              <th><%= d.email %></th>
+              <th><a href="/users/edit/<%= d.id %>">Edit</a></th>
+              <th><a href="/users/delete/<%= d.id %>">Delete</a></th>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+    </h1>
+    <h2>
+      <form class="add_user" action="/users" method="post">
+        <input type="text" name="username" placeholder="username"><br>
+        <input type="text" name="firstname" placeholder="firstname"><br>
+        <input type="text" name="lastname" placeholder="lastname"><br>
+        <input type="text" name="email" placeholder="email"><br>
+        <button type="Submit" name="button">Add</button>
+      </form>
+    </h2>
+    <a href="/">Home</a>
+  </body>
+</html>

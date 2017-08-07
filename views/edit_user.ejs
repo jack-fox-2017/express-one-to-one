@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Contacts</title>
+  </head>
+  <body>
+    <center>
+      <section class="section">
+      <div class="container">
+    <h1 class="title">Edit User</h1>
+    <h2>
+      <%dataU.forEach(function(d){ %>
+      <form action="/users/edit/<%=d.id%>" method="post">
+        Username:<br>
+        <input type="text" name="username" value="<%=d.username%>"><br>
+        Firstname:<br>
+        <input type="text" name="firstname" value="<%=d.firstname%>"> <br>
+        Lastname:<br>
+        <input type="text" name="lastname" value="<%=d.lastname%>"><br>
+        Email:<br>
+        <input type="text" name="email" value="<%=d.email%>"><br>
+        <br>
+        <button type="submit" name="button">Save Changes</button> <br>
+      </form>
+    </h2>
+    <%})%>
+  </div>
+</section>
+  </center>
+  </body>
+</html>
