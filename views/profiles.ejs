@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>profile</title>
+  </head>
+  <body>
+    <h1>
+      <table border="2">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Hometown</th>
+            <th>Birth Year</th>
+            <th>Relationship Status</th>
+            <th>User id</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% var i= 1%>
+          <% dataP.forEach(d=> { %>
+            <tr>
+              <th><%=i%><%i+=1%></th>
+              <th><%= d.hometown %></th>
+              <th><%= d.birth_year %></th>
+              <th><%= d.relationship_status %></th>
+              <th><%= d.profiles_users %></th>
+              <th><a href="/profiles/edit/<%= d.id %>">Edit</a></th>
+              <th><a href="/profiles/delete/<%= d.id %>">Delete</a></th>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+    </h1>
+    <h2>
+      <!-- <%=JSON.stringify(dataU)%> -->
+      <form class="add_user" action="/profiles" method="post">
+        <input type="text" name="hometown" placeholder="hometown"><br>
+        <input type="text" name="birth_year" placeholder="birth year"><br>
+        <input type="text" name="relationship_status" placeholder="relationship status"><br>
+          <select name="profiles_users">
+            <%dataU.forEach(d=>{%>
+            <option value="<%=d.id%>"><%=d.username%></option>
+            <%})%>
+          </select>
+        <button type="Submit" name="button">Add</button>
+      </form>
+    </h2>
+    <a href="/">Home</a>
+  </body>
+</html>
