@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PROFILES</title>
+</head>
+
+<body>
+    <div class="title" align=center>
+        <table align=center>
+            <tr>
+                <th>ID</th>
+                <th>HOMETOWN</th>
+                <th>Birth year</th>
+                <th>Relation Status</th>
+                <th>User</th>
+            </tr>
+            <% dataProfiles.forEach( cont => { %>
+                <tr>
+                    <td>
+                        <%= cont.id %>
+                    </td>
+                    <td>
+                        <%= cont.hometown %>
+                    </td>
+                    <td>
+                        <%= cont.birth_year %>
+                    </td>
+                    <td>
+                        <%= cont.relationship_status %>
+                    </td>
+                    <td>
+                        <%= cont.user_id %>
+                    </td>
+                    <td><a href="/profiles/add/<%= cont.id %>">Add</a> | <a href="/profiles/edit/<%= cont.id %>">EDIT</a> | <a href="/profiles/delete/<%= cont.id %>">DELETE</a></td>
+                </tr>
+                <% }) %>
+        </table>
+
+        <br>
+        <br>
+
+        <h1>FORM</h1>
+
+                        <h3 style="color:red;">
+                            <% if (error_msg) { %>
+                                <%= error_msg %>
+                                    <% } %>
+                        </h3>
+        <form action="/profiles" method="post">
+            <input type="text" name="hometown" placeholder="Insert Your Hometown"><br>
+            <input type="text" name="year" placeholder="Insert Your Birth Year"><br>
+            <input type="text" name="status" placeholder="Insert Your Relationship Status"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>

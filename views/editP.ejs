@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>EDIT PROFILE</title>
+</head>
+
+<body>
+    <h1>EDIT PROFILE</h1>
+    <form action="/profiles/edit/<%= cont[0].id %>" method="post">
+        <input type="text" name="username" value="<%=cont[0].hometown%>"><br>
+        <input type="text" name="fname" value="<%= cont[0].birth_year %>"><br>
+        <input type="text" name="lname" value="<%= cont[0].relationship_status %>"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
