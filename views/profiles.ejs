@@ -6,6 +6,9 @@
   </head>
   <body>
     <h2>Profiles</h2>
+    <% if (err_msg) { %>
+      <p style="color: red"><%= err_msg %></p>
+    <% } %>
     <form action="/profiles" method="post">
       <input type="text" name="hometown" placeholder="Hometown">
       <input type="text" name="birth_year" placeholder="Birth Year">
@@ -25,6 +28,7 @@
           <th>Birth Year</th>
           <th>Relationship Status</th>
           <th>User ID</th>
+          <th>Name</th>
         </tr>
       </thead>
       <tbody>
@@ -35,6 +39,7 @@
           <td><%= d.birth_year %></td>
           <td><%= d.relationship_status %></td>
           <td><%= d.UserId %></td>
+          <td><%= d.name %></td>
           <td><a href="/profiles/edit/<%= d.id %>">EDIT</a></td>
           <td><a href="/profiles/delete/<%= d.id %>">DELETE</a></td>
         </tr>

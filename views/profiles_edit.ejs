@@ -6,6 +6,9 @@
   </head>
   <body>
     <h2>Edit Profile</h2>
+    <% if (err_msg) { %>
+      <p style="color: red"><%= err_msg %></p>
+    <% } %>
     <form action="/profiles/edit/<%= data.id %>" method="post">
       <input type="text" name="hometown" placeholder="Hometown" value="<%= data.hometown %>">
       <input type="text" name="birth_year" placeholder="Birth Year" value="<%= data.birth_year %>">
