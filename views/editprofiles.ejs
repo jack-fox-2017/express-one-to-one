@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Users</title>
+  </head>
+  <body>
+    <h1>Edit profile<h1>
+      <form action="/profiles/edit/<%=data[0].id%>" method="post">
+          <label><b>home town<b></label>
+          <input type="text" name="hometown" value="<%= data[0].hometown%>">
+          <label><b>birth year<b></label>
+          <input type="text" name="birth_year" value="<%= data[0].birth_year%>">
+          <label><b>relationship status<b></label>
+          <input type="text" name="relationship_status" value="<%= data[0].relationship_status%>">
+        <button type="submit" name="submit">update</button>
+      </form>
+      <a href="/profiles">cancel</a>
+      <select name="user_id">
+        <% for(let i = 0;i<data1.length;i++){ %>
+          <% if(data1[i].id == data[0].user_id){ %>
+          <option value ="<%=data1[i].id%>" selected><%= data1[i].username %></option>
+        <% }else{ %>
+          <option value ="<%=data1[i].id%>"><%= data1[i].username %></option>
+        <% } %>
+        <% } %>
+      </select>
+  </body>
+</html>

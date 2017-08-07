@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <h1>Users</h1>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>User Name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+    </tr>
+    <% data.forEach (d =>{%>
+      <tr>
+        <td>
+          <%= d.id %>
+        </td>
+        <td>
+          <%= d.username %>
+        </td>
+        <td>
+          <%= d.firstname %>
+        </td>
+        <td>
+          <%= d.lastname %>
+        </td>
+        <td>
+          <%= d.email %>
+        </td>
+        <td><a href="/users/edit/<%= d.id %>"><button type="button" name="button">Edit</button></a></td>
+        <td><a href="/users/delete/<%= d.id %>"><button type="button" name="button">Delete</button></a></td>
+      </tr>
+      <% }) %>
+  </table>
+  <br>
+  <left>
+    <form action="/users" method="post">
+      <label><b>User Name<b></label>
+      <input type="text" name="username" placeholder="please input your user name">
+      <br>
+      <label><b>First Name<b></label>
+      <input type="text" name="firstname" placeholder="First Name">
+      <br>
+      <label><b>Last Name<b></label>
+      <input type="text" name="lastname" placeholder="please input your Last Name">
+      <br>
+      <label><b>email<b></label>
+      <input type="text" name="email" placeholder="please input your email">
+      <br>
+      <button type="submit" name="submit">Submit </button>
+    </form><br>
+  </left>
+  <br>
+  <a href="/">back to home</a>
+</body>
+</html>
