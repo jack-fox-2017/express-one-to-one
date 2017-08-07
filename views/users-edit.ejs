@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Form Tambah Profile</title>
+  </head>
+  <body>
+
+    <center>
+      <h1>Form Tambah Profile</h1>
+    <form action="/users/edit/<%=data_users.id%>" method = "POST">
+      <br>
+      Username:<br>
+      <input type="text" name="username" value="<%=data_users.username%>">
+      <br><br>
+      First Name:<br>
+      <input type="text" name="firstname" value="<%=data_users.firstname%>">
+      <br><br>
+      LAst Name:<br>
+      <input type="text" name="lastname" value="<%=data_users.lastname%>">
+      <br><br>
+      E-Mail:<br>
+      <input type="text" name="email" value="<%=data_users.email%>">
+      <br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </center>
+  </body>
+</html>

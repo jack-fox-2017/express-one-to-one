@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Form Tambah Profile</title>
+  </head>
+  <body>
+    <center>
+      <h1>Form Tambah Profile</h1>
+      <form action="/profiles/add/" method = "POST">
+      <br>
+      Hometown:<br>
+      <input type="text" name="hometown" value="" required>
+      <br><br>
+      Birth Year:<br>
+      <input type="text" name="birth_year" value="" required>
+      <br><br>
+      Relationship Status:<br>
+      <input type="text" name="relationship_status" value="" required>
+      <br><br>
+      <select name = "user_id">
+       <%data_users.forEach(dataUsr => {%>
+       <option value="<%=dataUsr.id%>"><%=dataUsr.firstname%></option>
+       <%})%>
+     </select>
+      <input type="submit" value="Submit">
+    </form>
+  </center>
+  </body>
+</html>
