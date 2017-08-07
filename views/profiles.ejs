@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>Profiles</h2>
+    <% if (err_msg) { %>
+      <p style="color: red"><%= err_msg %></p>
+    <% } %>
+    <form action="/profiles" method="post">
+      <input type="text" name="hometown" placeholder="Hometown">
+      <input type="text" name="birth_year" placeholder="Birth Year">
+      <input type="text" name="relationship_status" placeholder="Relationship Status">
+      <select name="UserId">
+        <% data2.forEach(d => { %>
+        <option value="<%= d.id %>"><%= d.firstname %> <%= d.lastname %></option>
+        <% }) %>
+      </select>
+      <button type="submit" name="submit">Add</button>
+    </form><br>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Hometown</th>
+          <th>Birth Year</th>
+          <th>Relationship Status</th>
+          <th>User ID</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(d => { %>
+        <tr>
+          <td><%= d.id %></td>
+          <td><%= d.hometown %></td>
+          <td><%= d.birth_year %></td>
+          <td><%= d.relationship_status %></td>
+          <td><%= d.UserId %></td>
+          <td><%= d.name %></td>
+          <td><a href="/profiles/edit/<%= d.id %>">EDIT</a></td>
+          <td><a href="/profiles/delete/<%= d.id %>">DELETE</a></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table><br>
+    <a href="/">Back</a>
+  </body>
+</html>
