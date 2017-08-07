@@ -2,7 +2,7 @@ const Sql = require('sqlite3').verbose();
 let db = new Sql.Database('./db/data.db');
 
 db.serialize(()=>{
-  //create table contacts
+  //create table users
   let qry_createUsers = `CREATE TABLE IF NOT EXISTS Users(id INTEGER PRIMARY KEY AUTOINCREMENT,
     username VARCHAR(25), firstname VARCHAR(25), lastname VARCHAR(25), email VARCHAR(25))`;
   db.run(qry_createUsers);

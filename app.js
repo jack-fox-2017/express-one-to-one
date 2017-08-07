@@ -81,14 +81,10 @@ app.get('/profiles', (req, res)=>{
       else
         res.render('profiles',{dataUsers:rowUser, dataProfiles:rowProfile});
     });
-      //res.render('profiles', {dataProfiles:rowProfile});
   });
 });
 
-app.get('/profiles', (req, res)=>{
-
-});
-
+//profiles: insert profile data
 app.post('/profiles', (req, res)=>{
   let qry_InsertProfile = `INSERT INTO Profiles (hometown, birth_year, relationship_status, users_id) VALUES
     ('${req.body.hometown}',${req.body.birth_year},'${req.body.relationship_status}', ${req.body.users_id})`;
@@ -96,27 +92,40 @@ app.post('/profiles', (req, res)=>{
   res.redirect('/profiles');
 });
 
-// //profiles
-//
-// app.get('/profiles/edit/:id', (req, res)=>{
-//   db.all(`SELECT * FROM PROFILES WHERE id=${req.params.id}`, (err,rows) =>{
-//     if(err){
-//       throw err;
-//     }
-//     res.render('edit-profile',{data:rows});
-//   });
-// });
-//
-// app.post('/profiles/edit/:id', (req, res)=>{
-//   db.run(`UPDATE PROFILES SET date_of_birth='${req.body.date_of_birth}', age='${req.body.age}', hobby='${req.body.hobby}' WHERE id=${req.params.id}`);
-//   res.redirect('/profiles');
-// });
-//
-// app.get('/profiles/del/:id', (req, res)=>{
-//   db.run(`DELETE FROM PROFILES WHERE id=${req.params.id}`);
-//   res.redirect('/profiles');
-// });
-//
+//profiles: get/show profile data
+app.get('/profiles/edit/:id', (req, res)=>{
+  let qry_showProfile = `SELECT * FROM Profiles WHERE id=${req.params.id}`;
+  db.all(qry_showProfile, (err, rowProfile)=>{
+    let qry_showUsers = `SELECT * FROM Users WHERE id=${rowProfile[0].users_id}`;
+    if (err)
+      res.render('edit-profile', {dataProfile:err});
+    else
+    db.all(qry_showUsers, (err, rowUser)=>{
+      if (err)
+        res.render('edit-profile', {dataUsers:err, dataProfiles:rowProfile[0]});
+      else
+        res.render('edit-profile',{dataUsers:rowUser[0], dataProfiles:rowProfile[0]});
+    });
+  });
+});
+
+//profiles: update profile data
+app.post('/profiles/edit/:id', (req,res)=>{
+  let qry_updateProfile = `UPDATE Profiles SET
+    hometown='${req.body.hometown}',
+    birth_year='${req.body.birth_year}',
+    relationship_status='${req.body.relationship_status}'`;
+  db.run(qry_updateProfile);
+  res.redirect('/profiles');
+});
+
+//profiles: delete profile data
+app.get('/profiles/delete/:id', (req, res)=>{
+  let qry_delProfile = `DELETE FROM Profiles WHERE id=${req.params.id}`;
+  db.run(qry_delProfile);
+  res.redirect('/profiles');
+});
+
 //listen to localhost:3000
 app.listen(3000, ()=>{
   console.log('listening on port 3000');

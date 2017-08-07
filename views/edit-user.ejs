@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Edit contact</title>
+    <title>Edit User</title>
   </head>
   <body>
-    <h1>Edit Users</h1>
+    <h1>Edit User</h1>
     <% let d = data %>
     <form action="/users/edit/<%= d.id %>" method="post">
       <input type="text" name="username" placeholder="Username" value="<%= d.username %>"><br>
