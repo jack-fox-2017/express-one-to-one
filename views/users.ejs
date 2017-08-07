@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>USER</title>
+</head>
+
+<body>
+    <div class="title" align=center>
+
+
+        <table align=center>
+            <tr>
+                <th>ID</th>
+                <th>USERNAME</th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>EMAIL</th>
+            </tr>
+            <% dataUser.forEach( cont => { %>
+                <tr>
+                    <td>
+                        <%= cont.id %>
+                    </td>
+                    <td>
+                        <%= cont.username %>
+                    </td>
+                    <td>
+                        <%= cont.firstname %>
+                    </td>
+                    <td>
+                        <%= cont.lastname %>
+                    </td>
+                    <td>
+                        <%= cont.email %>
+                    </td>
+                    <td><a href="/users/edit/<%= cont.id %>">EDIT</a> | <a href="/users/delete/<%= cont.id %>">DELETE</a></td>
+                </tr>
+                <% }) %>
+        </table>
+
+        <br>
+        <br>
+
+        <h1>FORM</h1>
+                <h3 style="color:red;">
+                    <% if (error_msg) { %>
+                        <%= error_msg %>
+                            <% } %>
+                </h3>
+        <form action="/users" method="post">
+            <input type="text" name="username" placeholder="Insert Your Username"><br>
+            <input type="text" name="fname" placeholder="Insert Your First Name"><br>
+            <input type="text" name="lname" placeholder="Insert Your Last Name"><br>
+            <input type="text" name="email" placeholder="Insert Your E-mail Address"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>
