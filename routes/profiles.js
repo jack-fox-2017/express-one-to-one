@@ -4,16 +4,16 @@ const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('./db/data.db')
 
 router.get('/', (req, res) => {
-  db.all(`
-    SELECT
-      profiles.*,
-      contacts.name as contact_name
-      
-      FROM profiles 
-        LEFT JOIN contacts 
-          ON contacts.id=profiles.contact_id
-  `, (errP, rowsP) => {
+  db.all(`SELECT * FROM profiles`, (errP, rowsP) => {
     if (errP) throw errP
+
+    db.serialize(function() {
+      rowsP.forEach((rowP, index) => {
+        db.get(`SELECT name FROM contacts WHERE id = ${rowP.contact_id}`, (err, row) => {
+          rowsP[index].contact_name = row.name
+        })
+      })
+
       db.all(`
         SELECT 
           contacts.id,
@@ -30,6 +30,9 @@ router.get('/', (req, res) => {
           contacts: rowsC
         })
       })
+      
+    })
+
   })
 })
 
@@ -56,6 +59,11 @@ router.get('/edit/:id', (req, res) => {
             WHERE profiles.id = ${req.params.id}
   `, (errP, rowsP) => {
     if (errP) throw errP
+
+      rowsP.forEach(item => {
+
+      })
+
       db.all(`
         SELECT 
           contacts.id,
