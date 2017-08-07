@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Users</title>
+  </head>
+  <body>
+    <h1>Edit Users</h1>
+    <br>
+    <br>
+    <form  action="/users/edit/<%= data.id %>" method="post">
+      <fieldset>
+      <label><b>Name :  <b></label>
+      <input type="text" name="username" value="<%= data.username %>"><br>
+      <label><b>Company :<b></label>
+      <input type="text" name="firstname" value="<%= data.firstname %>"><br>
+      <label><b>Phone :<b></label>
+      <input type="text" name="lastname" value="<%= data.lastname %>"><br>
+      <label><b>Email :<b></label>
+      <input type="email" name="email" value="<%= data.email %>"><br>
+      <button type="submit">Save</button>
+      </fieldset>
+    </form>
+    <a href="/contact"><button type="link" name="button">Cancel</button></a>
+    <br>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+  </head>
+  <body>
+    <h1>Profiles Information</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Hometown</th>
+          <th>birth_year</th>
+          <th>relationship_status</th>
+          <th>user_id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(z=> { %>
+          <tr>
+            <td><%= z.id %></td>
+            <td><%= z.hometown %></td>
+            <td><%= z.birth_year %></td>
+            <td><%= z.relationship_status %></td>
+            <td><%= z.user_id %></td>
+            <td><a href="/profile/edit/<%=z.id%>">Edit</a></td>
+            <td><a href="/profile/delete/<%=z.id%>">Delete</a></td>
+          </tr>
+        <% })%>
+      </tbody>
+    </table>
+    <br><br>
+    <form action="/profile" method="post">
+      <fieldset>
+        <input type="text" name="hometown" placeholder="Input hometown"><br>
+        <input type="text" name="birth_year" placeholder="Input your birth_year"><br>
+        <input type="text" name="relationship_status" placeholder="Input status"><br>
+
+        <select name="user_id">
+        <% dataUsers.forEach(a=> { %>
+        <option value="<%= a.id %>"><%= a.firstname %>%></option>
+          <% })%>
+        </select>
+
+        <button type="submit">save</button>
+      </fieldset>
+    </form>
+    <br><br>
+    <a href="/">Home</a>
+  </body>
+</html>
