@@ -1,0 +1,27 @@
+{
+  "name": "express-sqlite3-crud",
+  "version": "1.0.0",
+  "description": "/** /** EXPRESS CONTACTS-GROUPS --------------------------- Buatlah sebuah aplikasi sederhana menggunakan Express JS dan SQLITE3 untuk menampilkan list Contact&Group, menambah data Contact&Group, melakukan edit data dan delete data berdasarkan data yang dipilih",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jack-fox-2017/express-sqlite3-crud.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jack-fox-2017/express-sqlite3-crud/issues"
+  },
+  "homepage": "https://github.com/jack-fox-2017/express-sqlite3-crud#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.7",
+    "express": "^4.15.3",
+    "hello-express": "0.0.3",
+    "nodemon": "^1.11.0",
+    "sqlite3": "^3.1.9"
+  }
+}

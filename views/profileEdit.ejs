@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      background-color: #111;
+    }
+</style>
+    <ul>
+      <li><a class="active" href="/">Home</a></li>
+      <li><a href="/contacts">Contact</a></li>
+      <li><a href="/groups">Group</a></li>
+      <li><a href="/addresses">Address</a></li>
+      <li><a href="/profiles">Profile</a></li>
+    </ul>
+    <meta charset="utf-8">
+    <title>Edit Profile</title>
+    <form action="/profiles/edit/<%= data[0].id %>" method="post">
+      <input type="text" name='username' value="<%= data[0].username %>">
+      <input type="text" name='password' value="<%= data[0].password %>">
+      <select name="contacts_id">
+      <% data_contact.forEach( cont => {%>
+        <option value="<%= cont.id%>" <%= data[0].contacts_id == cont.id ? "selected":"" %>>   <%= cont.name%></option>
+      <%})%>
+      </select>
+      <button class = 'button_3' type="submit">Submit</button>
+      <br>
+      <% if(message != '') { %>
+        <%= `Error: Contact's id is already taken`%>
+      <%}%>
+    </form>
+  </body>
+</html>
