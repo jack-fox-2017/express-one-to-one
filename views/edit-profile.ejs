@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Profile</title>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <a href="/users">Users</a>
+    <a href="/profiles">Profiles</a>
+    <br><br>
+    <% if (err_msg) {%>
+      <p><%= err_msg %></p>
+    <% }%>
+
+    <form action="/profiles/edit/<%=prf.id%>" method="post">
+      <fieldset>
+        <legend>Edit Profile</legend>
+        <input type="text" name="hometown" value="<%= prf.hometown %>"><br>
+        <input type="text" name="relationship_status" value="<%= prf.relationship_status %>"><br>
+        <select name= "user_id">
+        <% for(var i=0; i<user.length; i++) {%>
+          <% if(prf.user_id == user[i].id) {%>
+            <option value="<%= user[i].id %>" selected><%= user[i].id %>.  <%= user[i].username %></option>
+          <%} else {%>
+            <option value="<%= user[i].id %>"><%= user[i].id %>. <%= user[i].username %></option>
+        <%}}%>
+        </select><br><br>
+
+        <input type="submit" value="Update">
+      </fieldset>
+    </form>
+
+  </body>
+</html>
