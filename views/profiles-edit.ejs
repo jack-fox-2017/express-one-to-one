@@ -11,10 +11,14 @@
       <h1><a href="/">Edit Profile: <%= item.username %></a></h1>
     </marquee>
 
+    <% if (err) { %>
+      <p id="error"><%= err %></p>
+    <% } %>
+
     <form action="/profiles/edit/<%= item.id %>" method="post">
-      <input type="text" name="username" placeholder="Username" value="<%= item.username %>" required>
-      <input type="password" name="password" placeholder="Password" value="<%= item.password %>" required>
-      <select name="contact_id" required>
+      <input type="text" name="username" placeholder="Username" value="<%= item.username %>">
+      <input type="password" name="password" placeholder="Password" value="<%= item.password %>">
+      <select name="contact_id">
         <option value="">Contact Name</option>
         <% contacts.forEach(item2 => { %>
           <option value=<%= item2.id %> <%= item.contact_id == item2.id ? 'selected' : '' %> ><%= item2.name %></option>

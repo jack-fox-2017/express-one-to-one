@@ -35,11 +35,15 @@
       </tbody>
     </table>
 
+    <% if (err) { %>
+      <p id="error"><%= err %></p>
+    <% } %>
+
     <form action="/contacts" method="post">
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="text" name="company" placeholder="Company" required>
-      <input type="text" name="telp_number" placeholder="Phone Number" required>
-      <input type="text" name="email" placeholder="Email" required>
+      <input type="text" name="name" placeholder="Name">
+      <input type="text" name="company" placeholder="Company">
+      <input type="text" name="telp_number" placeholder="Phone Number">
+      <input type="text" name="email" placeholder="Email">
 
       <input type="submit" value="Submit">
     </form>

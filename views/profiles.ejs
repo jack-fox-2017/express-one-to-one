@@ -33,11 +33,15 @@
       </tbody>
     </table>
 
-    <form action="/profiles" method="post">
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="password" name="password" placeholder="Password" required>
+    <% if (err) { %>
+      <p id="error"><%= err %></p>
+    <% } %>
 
-      <select name="contact_id" required>
+    <form action="/profiles" method="post">
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+
+      <select name="contact_id">
         <option value="" selected>Contact Name</option>
         <% contacts.forEach(item => { %>
           <option value=<%= item.id %>><%= item.name %></option>

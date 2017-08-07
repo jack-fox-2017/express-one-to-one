@@ -27,3 +27,7 @@ input, select {
 input[type="checkbox"] {
 	display: inline
 }
+
+#error {
+  color: red;
+}

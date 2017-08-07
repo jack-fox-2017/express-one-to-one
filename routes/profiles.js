@@ -15,36 +15,40 @@ router.get('/', (req, res) => {
       })
 
       db.all(`
-        SELECT 
+        SELECT
           contacts.id,
           contacts.name
 
-          FROM contacts 
-            LEFT JOIN profiles 
-              ON contacts.id=profiles.contact_id 
+          FROM contacts
+            LEFT JOIN profiles
+              ON contacts.id=profiles.contact_id
                 WHERE profiles.contact_id is null
       `, (errC, rowsC) => {
         if (errC) throw errC
         res.render('profiles', {
           data: rowsP,
-          contacts: rowsC
+          contacts: rowsC,
+          err: req.query.err
         })
       })
-      
+
     })
 
   })
 })
 
 router.post('/', (req, res) => {
-  db.run(`INSERT INTO profiles (username, password, contact_id) VALUES (
-    '${req.body.username}',
-    '${req.body.password}',
-    ${req.body.contact_id == '' ? null : req.body.contact_id}
-  )`, function(err) {
-    if (err) throw err
-    res.redirect('/profiles')
-  })
+  if (req.body.username == '')
+    res.redirect('/profiles?err=username gaboleh kosongg!')
+  else
+    db.run(`INSERT INTO profiles (username, password, contact_id) VALUES (
+      '${req.body.username}',
+      '${req.body.password}',
+      ${req.body.contact_id == '' ? null : req.body.contact_id}
+    )`, function(err) {
+      if (err) throw err
+      res.redirect('/profiles')
+    })
 })
 
 router.get('/edit/:id', (req, res) => {
@@ -52,9 +56,9 @@ router.get('/edit/:id', (req, res) => {
     SELECT
       profiles.*,
       contacts.name as contact_name
-      
-      FROM profiles 
-        LEFT JOIN contacts 
+
+      FROM profiles
+        LEFT JOIN contacts
           ON contacts.id = profiles.contact_id
             WHERE profiles.id = ${req.params.id}
   `, (errP, rowsP) => {
@@ -65,33 +69,37 @@ router.get('/edit/:id', (req, res) => {
       })
 
       db.all(`
-        SELECT 
+        SELECT
           contacts.id,
           contacts.name
 
-          FROM contacts 
-            LEFT JOIN profiles 
+          FROM contacts
+            LEFT JOIN profiles
               ON contacts.id = profiles.contact_id
                 WHERE profiles.contact_id = ${rowsP[0].contact_id} OR profiles.contact_id is null
       `, (errC, rowsC) => {
         if (errC) throw errC
         res.render('profiles-edit', {
           data: rowsP,
-          contacts: rowsC
+          contacts: rowsC,
+          err: req.query.err
         })
       })
   })
 })
 
 router.post('/edit/:id', (req, res) => {
-  db.run(`UPDATE profiles SET
-    username = '${req.body.username}',
-    password = '${req.body.password}',
-    contact_id = ${req.body.contact_id == '' ? null : req.body.contact_id}
-    WHERE id = ${req.params.id}
-  `, function(err) {
-    res.redirect('/profiles')
-  })
+  if (req.body.username == '')
+    res.redirect(`/profiles/edit/${req.params.id}?err=Name gaboleh kosongg!`)
+  else
+    db.run(`UPDATE profiles SET
+      username = '${req.body.username}',
+      password = '${req.body.password}',
+      contact_id = ${req.body.contact_id == '' ? null : req.body.contact_id}
+      WHERE id = ${req.params.id}
+    `, function(err) {
+      res.redirect('/profiles')
+    })
 
 })
 
@@ -102,3 +110,5 @@ router.get('/delete/:id', (req, res) => {
 })
 
 module.exports = router
+
+'SELECT * FROM profiles LEFT JOIN contacts ON contacts.id = profiles.contact_id'
