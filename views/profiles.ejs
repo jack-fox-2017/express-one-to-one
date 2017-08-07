@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>INFO PROFILES</title>
+  </head>
+  <body>
+    <center>
+    <h1>Data Profiles</h1>
+    <a href = "/profiles/add"> <button type="button" name="buttons">Tambah Profiles</button></a><br><br>
+    <table border = "1">
+    <tr>
+      <th>ID</th>
+      <th>Hometown</th>
+      <th>Birth Year</th>
+      <th>Relationship Status</th>
+      <th>user_id</th>
+      <th>username</th>
+      <th>Edit</th>
+      <th>Hapus</th>
+    </tr>
+    <%data_profiles.forEach(dataPro => {%>
+      <tr>
+        <td><%=dataPro.id%></td>
+        <td><%=dataPro.hometown%></td>
+        <td><%=dataPro.birth_year%></td>
+        <td><%=dataPro.relationship_status%></td>
+        <td><%=dataPro.user_id%></td>
+        <td><%=dataPro.username%></td>
+        <td><a href="/profiles/edit/<%=dataPro.id%>"> <button type="button" name="buttons">Ganti</button></a></td>
+        <td><a href="/profiles/delete/<%=dataPro.id%>"> <button type="button" name="buttons">Hapus</button></a></td>
+      </tr>
+    <%})%>
+  </table>
+  <br>
+  <a href = "/"> <button type="button" name="buttons">Back</button></a><br><br>
+</center>
+  </body>
+</html>
