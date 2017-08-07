@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>UBAH USERS</h2><br>
+    <a href="/">Home</a>
+    <a href="/users">Users</a>
+    <form class="" action="/users/edit/<%= data.id %>" method="post">
+      <p>USER NAME</p>
+      <input type="text" name="username" value="<%= data.username %>">
+      <p>FIRST NAME</p>
+      <input type="text" name="firstname" value="<%= data.firstname %>">
+      <p>LAST NAME</p>
+      <input type="text" name="lastname" value="<%= data.lastname %>">
+      <p>EMAIL</p>
+      <input type="text" name="email" value="<%= data.email %>"><br><br>
+      <button type="submit" name="submit">save</button>
+    </form>
+  </body>
+</html>
