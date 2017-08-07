@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Users dengan id <%= data.id%></title>
+  </head>
+  <body>
+    <h1>Table edit users</h1>
+    <br>
+    <form action="/users/edit?id=<%= data.id%>" method="post">
+      <label>Username</label><br>
+      <input type="text" name="username" value="<%= data.username %>"><br>
+      <label>First name</label><br>
+      <input type="text" name="first_name" value="<%= data.firstname %>"><br>
+      <label>Last name</label><br>
+      <input type="text" name="last_name" value="<%= data.lastname %>"><br>
+      <label>email</label><br>
+      <input type="text" name="email"value="<%= data.email %>"><br>
+      <button type="submit">Edit users</button><br>
+    </form>
+
+  </body>
+</html>

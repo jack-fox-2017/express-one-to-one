@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Users</title>
+  </head>
+  <body>
+    <h1>Table users</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>username</th>
+          <th>first name</th>
+          <th>last name</th>
+          <th>email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(i => {%>
+        <tr>
+          <td><%= i.id%></td>
+          <td><%= i.username%></td>
+          <td><%= i.firstname%></td>
+          <td><%= i.lastname%></td>
+          <td><%= i.email%></td>
+          <td><a href="/users/edit?id=<%= i.id%>">Edit</a></td>
+          <td><a href="/users/delete?id=<%= i.id%>">Delete</a></td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+    <br>
+    <form action="/users" method="post">
+      <label>Username</label><br>
+      <input type="text" name="username"><br>
+      <label>First name</label><br>
+      <input type="text" name="first_name"><br>
+      <label>Last name</label><br>
+      <input type="text" name="last_name"><br>
+      <label>email</label><br>
+      <input type="text" name="email"><br>
+      <button type="submit">Add users</button><br>
+    </form>
+    <br>
+    <a href="/"><button type="button" name="button">Back to Index</button></a>
+
+  </body>
+</html>
