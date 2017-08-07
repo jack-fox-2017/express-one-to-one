@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="">
+      <div style="float:left;width:33%;text-align:center">
+        <h1><a href="/users">Users</a></h1>
+      </div>
+      <div style="float:left;width:33%;text-align:center">
+        <h1><a href="/Profiles">Profiles</a></h1>
+      </div>
+      <div style="float:left;width:33%;text-align:center">
+        <h1>........</h1>
+      </div>
+    </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th><p style="font-size:15px">Id</p></th>
+            <th><p style="font-size:15px">User Name</p></th>
+            <th><p style="font-size:15px">First Name</p></th>
+            <th><p style="font-size:15px">Last Name</p></th>
+            <th><p style="font-size:15px">Email</p></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(d=> {%>
+            <tr>
+              <td><p style="font-size:15px"><%= d.id %></p></td>
+              <td><p style="font-size:15px"><%= d.user_name %></p></td>
+              <td><p style="font-size:15px"><%= d.first_name %></p></td>
+              <td><p style="font-size:15px"><%= d.last_name %></p></td>
+              <td><p style="font-size:15px"><%= d.email %></p></td>
+              <td><p style="font-size:15px"><a href="/users/delete/<%= d.id %>">Delete</a></p></td>
+              <td><p style="font-size:17px"><a href="/users/edit/<%= d.id %>">Edit</a></p></td>
+            </tr>
+            <%})%>
+          })
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <form  action="/users" method="post">
+        <!-- <input type="number" name="id" placeholder="ID"><br> -->
+        <input type="text" name="user_name" placeholder="Username"><br>
+        <input type="text" name="first_name" placeholder="Firs Name"><br>
+        <input type="text" name="last_name" placeholder="Last Name"><br>
+        <input type="email" name="email" placeholder="Email"><br>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </body>
+</html>

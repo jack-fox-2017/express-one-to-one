@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="">
+      <div style="float:left;width:33%;text-align:center">
+        <h1><a href="/users">Users</a></h1>
+      </div>
+      <div style="float:left;width:33%;text-align:center">
+        <h1><a href="/Profiles">Profiles</a></h1>
+      </div>
+      <div style="float:left;width:33%;text-align:center">
+        <h1>........</h1>
+      </div>
+    </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th><p style="font-size:15px">Home Town</p></th>
+            <th><p style="font-size:15px">Birth Year</p></th>
+            <th><p style="font-size:15px">Relationship Status</p></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(d=> {%>
+            <tr>
+              <td><p style="font-size:15px"><%= d.home_town %></p></td>
+              <td><p style="font-size:15px"><%= d.birth_year %></p></td>
+              <td><p style="font-size:15px"><%= d.relationship_status %></p></td>
+              <td><p style="font-size:15px"><a href="/profiles/delete/<%= d.id %>">Delete</a></p></td>
+              <td><p style="font-size:17px"><a href="/profiles/edit/<%= d.id %>">Edit</a></p></td>
+            </tr>
+            <%})%>
+          })
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <form  action="/Profiles" method="post">
+        <input type="text" name="home_town" placeholder="Home Town"><br>
+        <input type="text" name="birth_year" placeholder="Birth Year"><br>
+        <input type="text" name="relationship_status" placeholder="Relationship Status"><br>
+        <% dataU.forEach(d=> {%>
+          <select name="id" required>
+            <option value="<%=d.id%>"><%=d.user_name%></option>
+          </select>
+        <%})%>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </body>
+</html>

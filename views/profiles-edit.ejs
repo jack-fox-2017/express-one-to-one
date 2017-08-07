@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="">
+      <div style="float:left;width:33%;text-align:center">
+        <h1><a href="/users">Users</a></h1>
+      </div>
+      <div style="float:left;width:33%;text-align:center">
+        <h1><a href="/Profiles">Profiles</a></h1>
+      </div>
+      <div style="float:left;width:33%;text-align:center">
+        <h1>........</h1>
+      </div>
+    </div>
+    <div>
+      <form  action="/profiles/edit/<%= data[0].id%>" method="post">
+        <input type="text" name="home_town" value="<%=data[0].home_town%>"><br>
+        <input type="text" name="birth_year" value="<%=data[0].birth_year%>"><br>
+        <input type="text" name="relationship_status" value="<%=data[0].relationship_status%>"><br>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </body>
+</html>
