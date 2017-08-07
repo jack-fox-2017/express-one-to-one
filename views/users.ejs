@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Users Table</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Username</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% data.forEach(z=> {%>
+            <tr>
+              <td><%= z.id %></td>
+              <td><%= z.username %></td>
+              <td><%= z.firstname %></td>
+              <td><%= z.lastname %></td>
+              <td><%= z.email %></td>
+              <td><a href="/users/edit/<%= z.id %>">Edit</a></td>
+              <td><a href="/users/delete/<%= z.id %>">Delete</a></td>
+            </tr>
+          <%})%>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <form  action="/users" method="post">
+      <fieldset>
+        <input type="text" name="username" placeholder="Input UserName"><br>
+        <input type="text" name="firstname" placeholder="Input FirstName"><br>
+        <input type="text" name="lastname" placeholder="Input LastName"><br>
+        <input type="email" name="email" placeholder="Input Email"><br><br>
+        <button type="submit">save</button>
+      </fieldset>
+    </form>
+    <br>
+    <a href="/">Home</a>
+    <br>
+  </body>
+</html>
