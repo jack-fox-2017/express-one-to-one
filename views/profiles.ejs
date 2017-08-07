@@ -34,10 +34,10 @@
     </table>
 
     <form action="/profiles" method="post">
-      <input type="text" name="username" placeholder="Username">
-      <input type="password" name="password" placeholder="Password">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
 
-      <select name="contact_id">
+      <select name="contact_id" required>
         <option value="" selected>Contact Name</option>
         <% contacts.forEach(item => { %>
           <option value=<%= item.id %>><%= item.name %></option>

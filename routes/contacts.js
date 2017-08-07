@@ -6,7 +6,7 @@ const db = new sqlite3.Database('./db/data.db')
 router.get('/', (req, res) => {
   db.all(`SELECT * FROM contacts`, (errC, rowsC) => {
     if (errC) throw errC
-    res.render('contact', {data: rowsC})
+    res.render('contacts', {data: rowsC})
   })
 })
 
