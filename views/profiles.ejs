@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profiles</title>
+  </head>
+  <body>
+    <h1>Table profiles</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>id Users</th>
+          <th>username</th>
+          <th>first name</th>
+          <th>last name</th>
+          <th>email</th>
+          <th>id Profiles</th>
+          <th>Hometown</th>
+          <th>Relationshitp status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% profiles.forEach(i => {%>
+        <tr>
+          <td><%= i.user_id%></td>
+          <td><%= i.username%></td>
+          <td><%= i.firstname%></td>
+          <td><%= i.lastname%></td>
+          <td><%= i.email%></td>
+          <td><%= i.id%></td>
+          <td><%= i.hometown%></td>
+          <td><%= i.relationship_status%></td>
+          <td><a href="/profiles/edit?id=<%= i.id%>">Edit</a></td>
+          <td><a href="/profiles/delete?id=<%= i.id%>">Delete</a></td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+    <br>
+    <% if(error){ %></h2>
+      <h3 style="color:red"><%=error %></h3>
+    <% } %>
+    <form action="/profiles" method="post">
+      <label>Home town</label><br>
+      <input type="text" name="hometown" required><br>
+      <label>Relationship Status</label><br>
+      <input type="text" name="relationship_status" required><br>
+        <label>Nama Users</label><br>
+      <select name="id_users" required>
+        <% users.forEach(z =>{ %>
+        <option value="<%= z.id%>"><%= z.username%></option>
+        <% }) %>
+      </select><br>
+      <br>
+      <button type="submit">add Profiles</button><br>
+    </form>
+    <br>
+    <a href="/"><button type="button" name="button">Back to Index</button></a>
+
+
+  </body>
+</html>
