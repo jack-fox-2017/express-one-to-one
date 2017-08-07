@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form action="/profiles/editprofiles/<%=data[0].id%>" method="post">
+      Home Town :<br>
+      <input type="text" name="hometown" value="<%=data[0].hometown%>">
+      <br>
+      Relationship :<br>
+      <input type="text" name="relationship_status"
+      value="<%=data[0].relationship_status%>">
+      <br>
+      Birth Year :<br>
+      <input type="text" name="birth_year"
+      value="<%=data[0].birth_year%>">
+      <br>
+      User ID :<br>
+      <input type="text" name="birth_year"
+      value="<%=data[0].user_id%>">
+      <br>
+    <button type="submit" name="Button">submit</button>
+    </form>
+  </body>
+</html>

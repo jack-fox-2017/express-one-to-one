@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Contacts</title>
+  </head>
+  <body>
+    <% if(pesan){ %>
+       <p style="color:red" class="text-center"><b><%= pesan %></b></p>
+     <% } %>
+    <table style="width:100%">
+ <tr>
+   <th>ID</th>
+   <th>Hometown</th>
+   <th>Birth Year</th>
+   <th>Relationship</th>
+   <th>User id</th>
+   <th>Username</th>
+ </tr>
+ <% profiles.forEach(data => { %>
+ <tr>
+   <td><%= data.Profile_id%></td>
+   <td><%= data.hometown%></td>
+   <td><%= data.birth_year%></td>
+   <td><%= data.relationship_status%></td>
+   <td><%= data.user_id %></td>
+   <td><%= data.username %></td>
+   <td><a href="/profiles/editprofiles/<%= data.Profile_id%>">edit</a></td>
+   <td><a href="/profiles/delete/<%= data.Profile_id %>">delete</a></td>
+ </tr>
+ <% })%>
+</table>
+    <form action="/profiles" method="post">
+      Home Town :<br>
+      <input type="text" name="hometown" placeholder="Home Town">
+      <br>
+      Birth Year :<br>
+      <input type="text" name="birth_year" placeholder="Birth Year">
+      <br>
+      Relationship :<br>
+      <input type="text" name="relationship_status" placeholder="Relationship">
+      <br>
+      User ID :<br>
+      <input type="text" name="user_id" placeholder="User ID">
+      <br>
+      <button type="submit">submit</button>
+    </form>
+  </body>
+</html>

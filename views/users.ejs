@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Contacts</title>
+  </head>
+  <body>
+    <table style="width:100%">
+ <tr>
+   <th>ID</th>
+   <th>Username</th>
+   <th>Firstname</th>
+   <th>Lastname</th>
+   <th>Email</th>
+ </tr>
+ <% users.forEach(data => { %>
+ <tr>
+   <td><%= data.id%></td>
+   <td><%= data.username%></td>
+   <td><%= data.firstname%></td>
+   <td><%= data.lastname%></td>
+   <td><%= data.email%></td>
+   <td><a href="/users/editusers/<%= data.id%>">edit</a></td>
+   <td><a href="/users/delete/<%= data.id %>">delete</a></td>
+ </tr>
+ <% })%>
+</table>
+    <form action="/users" method="post">
+      User Name :<br>
+      <input type="text" name="username" placeholder="User Name">
+      <br>
+      First Name :<br>
+      <input type="text" name="firstname" placeholder="First Name">
+      <br>
+      Last Name :<br>
+      <input type="text" name="lastname" placeholder="Last Name">
+      <br>
+      Email : <br>
+      <input type="text" name="email" placeholder="Email">
+      <br>
+      <button type="submit">submit</button>
+    </form>
+  </body>
+</html>
