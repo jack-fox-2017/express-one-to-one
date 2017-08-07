@@ -55,7 +55,8 @@ app.post('/users/edit/:id', (req,res)=>{
     username='${req.body.username}',
     firstname='${req.body.firstname}',
     lastname='${req.body.lastname}',
-    email='${req.body.email}'`;
+    email='${req.body.email}'
+    WHERE id=${req.params.id}`;
   db.run(qry_updateUser);
   res.redirect('/users');
 });
@@ -118,7 +119,8 @@ app.post('/profiles/edit/:id', (req,res)=>{
   let qry_updateProfile = `UPDATE Profiles SET
     hometown='${req.body.hometown}',
     birth_year='${req.body.birth_year}',
-    relationship_status='${req.body.relationship_status}'`;
+    relationship_status='${req.body.relationship_status}'
+    WHERE id=${req.params.id}`;
   db.run(qry_updateProfile);
   res.redirect('/profiles');
 });
