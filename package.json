@@ -1,0 +1,28 @@
+{
+  "name": "express-one-to-one",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bytes": "^2.4.0",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "iconv-lite": "^0.4.15",
+    "sqlite3": "^3.1.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jack-fox-2017/express-one-to-one.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jack-fox-2017/express-one-to-one/issues"
+  },
+  "homepage": "https://github.com/jack-fox-2017/express-one-to-one#readme"
+}
