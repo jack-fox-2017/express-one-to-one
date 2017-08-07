@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User List Page</title>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <a href="/users">Users</a>
+    <a href="/profiles">Profiles</a>
+    <br><br>
+    <h1>User View</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%user.forEach(u=> { %>
+          <tr>
+            <td><%= u.id %></td>
+            <td><%= u.username %></td>
+            <td><%= u.firstname %></td>
+            <td><%= u.lastname %></td>
+            <td><%= u.email %></td>
+            <td><a href="/users/edit/<%=u.id%>">Edit</a> | <a href="/users/delete/<%=u.id%>">Delete</a></td>
+          </tr>
+        <% })%>
+      </tbody>
+    </table>
+    <br><br>
+    <form action="/users" method="post">
+      <fieldset>
+        <legend>Add User</legend>
+        <input type="text" name="username" placeholder="ketik username"><br>
+        <input type="text" name="firstname" placeholder="ketik first name"><br>
+        <input type="text" name="lastname" placeholder="ketik last name"><br>
+        <input type="text" name="email" placeholder="ketik email"><br>
+        <input type="submit" value="Add">
+      </fieldset>
+    </form>
+    <br><br>
+
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User List Page</title>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <a href="/users">Users</a>
+    <a href="/profiles">Profiles</a>
+    <br><br>
+    <h1>Profiles</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Hometown</th>
+          <th>Status</th>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%prf.forEach(p=> { %>
+          <tr>
+            <td><%= p.id %></td>
+            <td><%= p.hometown %></td>
+            <td><%= p.relationship_status %></td>
+            <td><%= p.user_id %></td>
+            <td><%= p.username %></td>
+            <td><a href="/profiles/edit/<%=p.id%>">Edit</a> | <a href="/profiles/delete/<%=p.id%>">Delete</a></td>
+          </tr>
+        <% })%>
+      </tbody>
+    </table>
+    <br><br>
+    <form action="/profiles" method="post">
+      <%if(err_msg) {%>
+        <p><%= err_msg %></p>
+      <%}%>
+      <fieldset>
+        <legend>Add Profile</legend>
+        <input type="text" name="hometown" placeholder="ketik asal daerah"><br>
+        <input type="text" name="relationship_status" placeholder="ketik status"><br>
+        <select name= "user_id">
+        <% user.forEach(u => { %>
+        <option value="<%= u.id %>"><%= u.id %>. <%= u.username %></option>
+        <% }) %>
+      </select><br><br>
+        <input type="submit" value="Add">
+      </fieldset>
+    </form>
+    <br><br>
+
+  </body>
+</html>
