@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      background-color: #111;
+    }
+</style>
+    <meta charset="utf-8">
+    <title>Profiles</title>
+  </head>
+  <body>
+    <ul>
+      <li><a class="active" href="/">Home</a></li>
+      <li><a href="contacts">Contact</a></li>
+      <li><a href="groups">Group</a></li>
+      <li><a href="addresses">Address</a></li>
+      <li><a href="profiles">Profile</a></li>
+    </ul>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Contacts</th>
+      </td>
+      <% for(var i = 0; i < data.length; i++) { %>
+      <tr>
+        <td><%= data[i].id %></td>
+        <td><%= data[i].username %></td>
+        <td><%= data[i].password %></td>
+        <td><%= data[i].name %></td>
+        <td><a class = 'button_2' href='profiles/edit/<%= data[i].id %>'>Edit </a>||
+            <a class = 'button_2' href='profiles/delete/<%= data[i].id %>'>Delete </a>||
+        </td>
+      </tr>
+      <%  }  %>
+
+    </table>
+
+    <form action="/profiles" method="post">
+      <input type="text" name='username' placeholder="username">
+      <input type="text" name='password' placeholder="password">
+      <select name="contacts_id">
+      <% data_contact.forEach( cont => {%>
+        <option value="<%= cont.id%>"><%= cont.name%></option>
+      <%})%>
+      </select>
+      <button class = 'button_3' type="submit">Submit</button>
+      <br>
+      <% if(message != '') { %>
+        <%= `Error: Contact's id is already taken`%>
+      <%}%>
+    </form>
+
+  </body>
+</html>

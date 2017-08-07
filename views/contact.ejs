@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <style>
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+
+        li {
+          float: left;
+        }
+
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+
+        li a:hover {
+          background-color: #111;
+        }
+    </style>
+    <meta charset="utf-8">
+    <title>Contacts</title>
+  </head>
+  <body>
+    <ul>
+      <li><a class="active" href="/">Home</a></li>
+      <li><a href="contacts">Contact</a></li>
+      <li><a href="groups">Group</a></li>
+      <li><a href="addresses">Address</a></li>
+      <li><a href="profiles">Profile</a></li>
+    </ul>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Company</th>
+        <th>Telp Number</th>
+        <th>E-mail</th>
+        <th>Groups</th>
+        <th>Action</th>
+      </td>
+      <% for(var i = 0; i < data.length; i++) { %>
+      <tr>
+        <td><%= data[i].contact_id %></td>
+        <td><%= data[i].contact_name %></td>
+        <td><%= data[i].company%></td>
+        <td><%= data[i].telp_number%></td>
+        <td><%= data[i].email%></td>
+        <td><%= data[i].group_names%></td>
+        <td><a class = 'button_2' href='contacts/group/<%= data[i].contact_id %>'>Assign Groups </a>||
+            <a class = 'button_2' href='contacts/edit/<%= data[i].contact_id %>'>Edit </a>||
+            <a class = 'button_2' href='contacts/delete/<%= data[i].contact_id %>'>Delete </a>||
+            <a class = 'button_2' href='contacts/address/<%= data[i].contact_id %>'>Address </a>
+        </td>
+      </tr>
+      <%  }  %>
+
+    </table>
+
+    <!-- Contacts: id type integer, name type string, company type string, telp_number type string, email type string -->
+
+    <form action="/contacts" method="post">
+      <input type="text" name='name' placeholder="name">
+      <input type="text" name='company' placeholder="company">
+      <input type="text" name='telp_number' placeholder="telp_number">
+      <input type="text" name='email' placeholder="email">
+      <select name="groups_id">
+      <% data_group.forEach( cont => {%>
+        <option value="<%= cont.id%>"><%= cont.name_of_group%></option>
+      <%})%>
+      </select>
+      <button class = 'button_3' type="submit">Submit</button>
+    </form>
+
+  </body>
+</html>

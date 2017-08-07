@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      background-color: #111;
+    }
+    </style>
+    <meta charset="utf-8">
+    <title>Groups</title>
+  </head>
+  <body>
+    <ul>
+      <li><a class="active" href="/">Home</a></li>
+      <li><a href="contacts">Contact</a></li>
+      <li><a href="groups">Group</a></li>
+      <li><a href="addresses">Address</a></li>
+      <li><a href="profiles">Profile</a></li>
+    </ul>
+    Group Name: <br>
+    <%= data_group[0].name_of_group %>
+
+    <form action="/groups/contact/<%= data_group[0].id%>" method="post">
+        <select name="contacts_id">
+        <% data_contact.forEach( cont => {%>
+          <option value="<%= cont.id%>"><%= cont.name%></option>
+        <%})%>
+        </select>
+      <button class = 'button_3' type="submit">Submit</button>
+    </form>
+
+  </body>
+</html>
