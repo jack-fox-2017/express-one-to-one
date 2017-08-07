@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+  <body>
+    <% let item = data[0] %>
+    <marquee direction="right">
+      <h1><a href="/">Edit Profile: <%= item.username %></a></h1>
+    </marquee>
+
+    <form action="/profiles/edit/<%= item.id %>" method="post">
+      <input type="text" name="username" placeholder="Username" value="<%= item.username %>">
+      <input type="password" name="password" placeholder="Password" value="<%= item.password %>">
+      <select name="contact_id">
+        <option value="">Contact Name</option>
+        <% contacts.forEach(item2 => { %>
+          <option value=<%= item2.id %> <%= item.contact_id == item2.id ? 'selected' : '' %> ><%= item2.name %></option>
+        <% }) %>
+      </select>
+
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

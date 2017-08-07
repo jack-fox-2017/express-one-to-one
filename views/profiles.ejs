@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profiles</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+  <body>
+    <marquee direction="right">
+      <h1><a href="/">Profiles</a></h1>
+    </marquee>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Id</th>
+          <th>Username</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(item => { %>
+          <tr>
+            <td><%= item.contact_name %></td>
+            <td><%= item.id %></td>
+            <td><%= item.username %></td>
+            <td><%= item.password %></td>
+            <td><a href="/profiles/edit/<%= item.id %>">Edit</a></td>
+            <td><a href="/profiles/delete/<%= item.id %>">Delete</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <form action="/profiles" method="post">
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+
+      <select name="contact_id">
+        <option value="" selected>Contact Name</option>
+        <% contacts.forEach(item => { %>
+          <option value=<%= item.id %>><%= item.name %></option>
+        <% }) %>
+      </select>
+
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

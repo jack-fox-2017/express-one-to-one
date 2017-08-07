@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Contacts</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+  <body>
+    <marquee direction="right">
+      <h1><a href="/">Contacts</a></h1>
+    </marquee>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Company</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(item => { %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= item.name %></td>
+            <td><%= item.company %></td>
+            <td><%= item.telp_number %></td>
+            <td><%= item.email %></td>
+            <td><a href="/contacts/edit/<%= item.id %>">Edit</a></td>
+            <td><a href="/contacts/delete/<%= item.id %>">Delete</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <form action="/contacts" method="post">
+      <input type="text" name="name" placeholder="Name">
+      <input type="text" name="company" placeholder="Company">
+      <input type="text" name="telp_number" placeholder="Phone Number">
+      <input type="text" name="email" placeholder="Email">
+
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
