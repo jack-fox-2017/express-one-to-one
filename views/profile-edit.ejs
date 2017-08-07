@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <%- include part/css %>
+  </head>
+  <body>
+    <%- include part/menu %>
+
+    <div class="col-md-4 col-md-offset-4">
+      <% if(pesan){ %>
+        <p style="color:red" class="text-center"><b><%= pesan %></b></p>
+      <% } %>
+      <form class="form-inline" action="/profiles/<%= dataProfile.id %>/edit" method="post">
+        <label>New Profile Editor</label><br>
+        <table>
+          <tr>
+            <td><label>Username</label></td>
+
+            <td><input type="text" name="username" value="<%= dataProfile.username %>" class="form-control" disabled></td>
+          </tr>
+          <tr>
+            <td><label>Password</label></td>
+
+            <td><input type="password" name="password" value="<%= dataProfile.password %>" class="form-control"></td>
+          </tr>
+          <tr>
+            <td><label>Firstname</label></td>
+
+            <td><input type="text" name="firstname" value="<%= dataProfile.firstname %>" class="form-control"></td>
+          </tr>
+          <tr>
+            <td><label>Lastname</label></td>
+
+            <td><input type="text" name="lastname" value="<%= dataProfile.lastname %>" class="form-control"></td>
+          </tr>
+          <tr>
+            <td><label>Contact ID</label></td>
+
+            <td><select  name="ContactId" class="form-control" disabled>
+          <option value="" disabled selected>select a Contact</option>
+
+          <% dataKontak.forEach(getData => { %>
+            <% let selected = ''
+            if(getData.id == dataProfile.ContactId){
+              selected = 'selected'
+            } %>
+            <option value="<%= getData.id %>" <%= selected %> ><%= getData.name %></option>
+          <% }) %>
+        </select></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button type="submit" name="button" class="btn btn-info"><span class="glyphicon glyphicon-send"></span> &nbsp; Edit Profile</button></td>
+          </tr>
+        </table>
+
+      </form>
+      <br>
+
+    </div>
+  </body>
+</html>

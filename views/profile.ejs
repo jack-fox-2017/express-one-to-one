@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <%- include part/css %>
+  </head>
+  <body>
+    <%- include part/menu %>
+
+    <div class="col-md-8 col-md-offset-2">
+      <% if(pesan){ %>
+        <p style="color:red" class="text-center"><b><%= pesan %></b></p>
+      <% } %>
+      <form class="form-inline" action="/profiles" method="post">
+        <label>New Profile Register Form</label><br>
+        <input type="text" name="username" placeholder="ex: achim2017" class="form-control">
+        <input type="password" name="password" placeholder="Your Password" class="form-control">
+        <input type="text" name="firstname" placeholder="Achim" class="form-control">
+        <input type="text" name="lastname" placeholder="ex: Baggins" class="form-control">
+        <select  name="ContactId" class="form-control">
+          <option value="" disabled selected>select a Contact</option>
+
+          <% kontak.forEach(getData => { %>
+            <option value="<%= getData.id %>"><%= getData.name %></option>
+          <% }) %>
+        </select>
+        <button type="submit" name="button" class="btn btn-info"><span class="glyphicon glyphicon-send"></span> &nbsp; Add New Profile</button>
+      </form>
+      <br>
+      <table class="table table-hover">
+        <tr class="info">
+          <td class="text-center">No</td>
+          <td class="text-center">Contact ID</td>
+          <td>Username </td>
+          <td>Password</td>
+          <td>Firstname</td>
+          <td>Lastname</td>
+          <td>Contact Id</td>
+          <td class="text-center">Action</td>
+        </tr>
+        <% let i = 1; profileData.forEach(profile => { %>
+          <tr>
+            <td class="text-center"><%= i++ %></td>
+            <td class="text-center"><%= profile.id %></td>
+            <td><%= profile.username %></td>
+            <td><%= profile.password %></td>
+            <td><%= profile.firstname %></td>
+            <td><%= profile.lastname %></td>
+            <td><%= profile.ContactId %></td>
+            <td class="text-center">
+              <a href="/profiles/<%= profile.id %>/edit"><button type="button" name="button" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
+              <a href="/profiles/<%= profile.id %>/delete"><button type="button" name="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</button></a>
+            </td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+  </body>
+</html>
