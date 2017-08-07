@@ -3,10 +3,10 @@ const db = new sqlite3.Database('./db/data.db')
 
 db.run(`CREATE TABLE IF NOT EXISTS contacts (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name VARCHAR(50),
-  company VARCHAR(50),
-  telp_number VARCHAR(15),
-  email VARCHAR(30)
+  name VARCHAR(50) NOT NULL,
+  company VARCHAR(50) NOT NULL,
+  telp_number VARCHAR(15) NOT NULL,
+  email VARCHAR(30) NOT NULL
 )`, err => {
   if (err) throw err
   console.log(`Table contacts created`);
@@ -47,8 +47,8 @@ db.run(`CREATE TABLE IF NOT EXISTS addresses (
 
 db.run(`CREATE TABLE IF NOT EXISTS profiles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username VARCHAR(20),
-  password VARCHAR(50),
+  username VARCHAR(20) NOT NULL,
+  password VARCHAR(50) NOT NULL,
   contact_id INTEGER,
   FOREIGN KEY(contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
   UNIQUE(contact_id)
@@ -64,4 +64,5 @@ let dropTable = table => {
   })
 }
 
-// dropTable('groups_contacts')
+// dropTable('contacts')
+// dropTable('profiles')
