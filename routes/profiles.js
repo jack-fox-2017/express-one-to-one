@@ -80,14 +80,17 @@ router.post('/edit/:id', (req, res) => {
     username = '${req.body.username}',
     password = '${req.body.password}',
     contact_id = ${req.body.contact_id == '' ? null : req.body.contact_id}
-  WHERE id = ${req.params.id}`)
+    WHERE id = ${req.params.id}
+  `, function(err) {
+    res.redirect('/profiles')
+  })
 
-  res.redirect('/profiles')
 })
 
 router.get('/delete/:id', (req, res) => {
-  db.run(`DELETE FROM profiles WHERE id = ${req.params.id}`)
-  res.redirect('/profiles')
+  db.run(`DELETE FROM profiles WHERE id = ${req.params.id}`, function(err) {
+    res.redirect('/profiles')
+  })
 })
 
 module.exports = router

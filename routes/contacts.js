@@ -6,13 +6,7 @@ const db = new sqlite3.Database('./db/data.db')
 router.get('/', (req, res) => {
   db.all(`SELECT * FROM contacts`, (errC, rowsC) => {
     if (errC) throw errC
-    db.all(`SELECT * FROM groups`, (errG, rowsG) => {
-      if (errG) throw errG
-      res.render('contacts', {
-        data: rowsC,
-        groups: rowsG
-      })
-    })
+    res.render('contact', {data: rowsC})
   })
 })
 
@@ -23,15 +17,9 @@ router.post('/', (req, res) => {
     '${req.body.telp_number}',
     '${req.body.email}'
   )`, function() {
-
-    // if (req.body.group_id != '')
-      // db.run(`INSERT INTO groups_contacts (contact_id, group_id) VALUES (
-      //   ${this.lastID},
-      //   ${req.body.group_id}
-      // )`)
+    res.redirect('/contacts')
   })
 
-  res.redirect('/contacts')
 })
 
 router.get('/edit/:id', (req, res) => {
@@ -47,16 +35,16 @@ router.post('/edit/:id', (req, res) => {
     company = '${req.body.company}',
     telp_number = '${req.body.telp_number}',
     email = '${req.body.email}'
-  WHERE id = ${req.params.id}`)
-
-  //
-
-  res.redirect('/contacts')
+    WHERE id = ${req.params.id}
+  `, function(err) {
+    res.redirect('/contacts')
+  })
 })
 
 router.get('/delete/:id', (req, res) => {
-  db.run(`DELETE FROM contacts WHERE id = ${req.params.id}`)
-  res.redirect('/contacts')
+  db.run(`DELETE FROM contacts WHERE id = ${req.params.id}`, function(err) {
+    res.redirect('/contacts')
+  })
 })
 
 module.exports = router
