@@ -88,8 +88,12 @@ app.get('/profiles', (req, res)=>{
 app.post('/profiles', (req, res)=>{
   let qry_InsertProfile = `INSERT INTO Profiles (hometown, birth_year, relationship_status, users_id) VALUES
     ('${req.body.hometown}',${req.body.birth_year},'${req.body.relationship_status}', ${req.body.users_id})`;
-  db.run(qry_InsertProfile);
-  res.redirect('/profiles');
+  db.run(qry_InsertProfile, (err)=>{
+    if(err)
+      res.send(err.toString());
+    else
+      res.redirect('/profiles');
+  });
 });
 
 //profiles: get/show profile data
