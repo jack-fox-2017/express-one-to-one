@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700" rel="stylesheet">
+    <style media="screen">
+      .main {
+        color: #0FA3B1;
+        padding: 48px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -580px; /* margin is -0.5 * dimension */
+        margin-top: -320px;
+        font-family: 'Raleway', sans-serif;
+      }
+      span {
+        color: white;
+        background-color: red;
+        padding: 5px;
+        font-size: 12pt;
+        font-weight: 700;
+        border-radius: 5px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/user">Users</a></li>
+      <li class="active"><a href="/profile">Profiles</a></li>
+    </ul>
+    </div>
+    </nav>
+    <div class="main">
+      <h1>Profile</h1>
+      <table class="table table-bordered">
+        <tr>
+          <th>ID</th>
+          <th class="text-center">Hometown</th>
+          <th class="text-center">Birth Year</th>
+          <th class="text-center">Relationship Status</th>
+          <th class="text-center">Username</th>
+          <th class="text-center" colspan="2">Action</th>
+        </tr>
+        <% data.forEach(d => { %>
+          <tr>
+            <td><%= d.profile_id %></td>
+            <td><%= d.hometown %></td>
+            <td><%= d.birth_year %></td>
+            <td><%= d.relationship_status %></td>
+            <td><%= d.username %></td>
+            <td><a href="/profile/edit-profile/<%= d.profile_id%>"><button class="btn btn-info" type="button" name="button">Edit</button></a></td>
+            <td><a href="/profile/delete/<%= d.profile_id%>"><button class="btn btn-info" type="button" name="button">Delete</button></a></td>
+          </tr>
+        <% }) %>
+      </table>
+      <br>
+      <h3>Add Profile</h3>
+      <form action="/profile" method="post">
+        <div>
+          <% if(pesan) { %>
+            <span>USERNAME ALREADY EXIST</span>
+          <% } %>
+          <br>
+          <label>Select Username</label>
+          <select class="form-control" name="user_id">
+            <% dataUser.forEach(b=> { %>
+            <option class="form-control" value="<%= b.id %>"><%= b.username%></option>
+            <% })%>
+          </select>
+        </div><br>
+        <div class="form-group">
+          <label for="hometown">Hometown:</label>
+          <input type="text" name="hometown" placeholder="Hometown" class="form-control" id="exampleInputEmail1">
+        </div>
+        <div class="form-group">
+          <label for="birth_year">Birth Year:</label>
+          <input type="text" name="birth_year" placeholder="Birth Year" class="form-control" id="exampleInputEmail1">
+        </div>
+        <div class="form-group">
+          <label>Relationship Status:</label>
+          <input type="text" name="relationship_status" placeholder="Relationship Status" class="form-control" id="exampleInputEmail1">
+        </div>
+        <br>
+        <button class="btn btn-info" type="submit" name="submit">SUBMIT</button>
+      </form><br>
+    </div>
+  </body>
+</html>

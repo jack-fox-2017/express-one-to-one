@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700" rel="stylesheet">
+    <style media="screen">
+      body {
+        color: #0FA3B1;
+        padding: 48px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -580px; /* margin is -0.5 * dimension */
+        margin-top: -320px;
+        font-family: 'Raleway', sans-serif;
+      }
+
+      span {
+        color: white;
+        background-color: red;
+        padding: 5px;
+        font-size: 12pt;
+        font-weight: 700;
+        border-radius: 5px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h2>Edit Profile</h2>
+    <form action="/profile/edit-profile/<%= data.id %>" method="post">
+      <label>Select Username</label>
+      <% if(pesan2) { %>
+        <span>USERNAME ALREADY EXIST</span>
+      <% } %>
+      <select class="form-control" name="user_id">
+      <% let pilih = "" %>
+      <% let nama = "" %>
+        <% dataUser.forEach(item => { %>
+          <% if(item.id === data.user_id) { %>
+            <% pilih = "selected" %>
+            <% nama = item.username %>
+          <% } %>
+      <% }) %>
+          <option class="form-control" value=<%= data.user_id %> <%= pilih %>><%= nama %></option>
+      </select><br>
+      <div class="form-group">
+        <label for="hometown">Hometown:</label>
+        <input type="text" name="hometown" class="form-control" id="exampleInputEmail1" value="<%= data.hometown%>">
+      </div>
+      <div class="form-group">
+        <label for="birth_year">Birth Year:</label>
+        <input type="text" name="birth_year" class="form-control" id="exampleInputEmail1" value="<%= data.birth_year%>">
+      </div>
+      <div class="form-group">
+        <label for="relationship_status">Relationship Status:</label>
+        <input type="text" name="relationship_status" class="form-control" id="exampleInputEmail1" value="<%= data.relationship_status%>">
+      </div>
+      <button class="btn btn-info" type="submit" name="submit">Save</button>
+    </form>
+  </body>
+</html>
