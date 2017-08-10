@@ -53,10 +53,10 @@ app.get("/user/delete/:id", function(req, res) {
 
 //--------ProfilePage--------//
 app.get("/profile", function(req, res) {
-  db.all('SELECT * FROM Profiles LEFT JOIN Users ON Users.id = Profiles.user_id', function(err, rows) {
+  db.all('SELECT Profiles.*, Users.*, Profiles.id AS profile_id FROM Profiles LEFT JOIN Users ON Users.id = Profiles.user_id', function(err, rows) {
     db.all('SELECT * FROM Users', function(err,rowsUser) {
       if(!err) {
-        res.render('profile', {data: rows, dataUser: rowsUser})
+        res.render('profile', {data: rows, dataUser: rowsUser, pesan: false,})
       }
     })
   })
@@ -67,29 +67,49 @@ app.post("/profile", function(req, res) {
     if (!err) {
     res.redirect('/profile')
   }else {
-    res.send('USERNAME SUDAH TERPAKAI!')
+    db.all('SELECT * FROM Profiles LEFT JOIN Users ON Users.id = Profiles.user_id', function(err, rows) {
+      db.all('SELECT * FROM Users', function(err,rowsUser) {
+        if(!err) {
+          res.render('profile', {data: rows, dataUser: rowsUser, pesan: "Sudah Dipakai",})
+        }
+      })
+    })
   }
   })
 })
 
 //***EditProfile***//
-app.get("/profile/edit-profile/:user_id", function(req, res) {
-  db.all(`SELECT * FROM Profiles WHERE user_id = '${req.params.user_id}'`, function(err, rows) {
-    if(!err) {
-      res.render('edit-profile', {data: rows[0]})
-    }
+app.get("/profile/edit-profile/:id", function(req, res) {
+  db.all(`SELECT * FROM Profiles WHERE id = '${req.params.id}'`, function(err, rows) {
+    db.all(`SELECT * FROM Users`, function(err,rowsUser) {
+      db.all(`SELECT * FROM Profiles LEFT JOIN Users ON Users.id = Profiles.user_id`, function(err, rowProfile) {
+        if(!err) {
+          res.render('edit-profile', {data: rows[0], dataUser:rowsUser, pesan2: false})
+        }
+      })
+    })
   })
 })
 
-app.post("/profile/edit-profile/:user_id", function(req, res) {
+app.post("/profile/edit-profile/:id", function(req, res) {
   // res.send(req.body)
-  db.run(`UPDATE Profiles set hometown = '${req.body.hometown}', birth_year = ${req.body.birth_year}, relationship_status = '${req.body.relationship_status}' WHERE user_id = ${req.params.user_id};`)
-  res.redirect("/profile")
+  db.run(`UPDATE Profiles set hometown = '${req.body.hometown}', birth_year = ${req.body.birth_year}, relationship_status = '${req.body.relationship_status}', user_id = ${req.body.user_id} WHERE id = ${req.params.id};`, function(err,msg) {
+    if(!err) {
+    res.redirect("/profile")
+  }else {
+    db.all('SELECT * FROM Profiles LEFT JOIN Users ON Users.id = Profiles.user_id', function(err, rows) {
+      db.all('SELECT * FROM Users', function(err,rowsUser) {
+        if(!err) {
+          res.render('profile', {data: rows, dataUser: rowsUser, pesan2: "Sudah Dipakai",})
+        }
+      })
+    })
+  }
 })
-
+})
 //***DeleteProfile***//
-app.get("/profile/delete/:user_id", function(req, res) {
-  db.run(`DELETE FROM Profiles WHERE user_id = ${req.params.user_id}`)
+app.get("/profile/delete/:id", function(req, res) {
+  db.run(`DELETE FROM Profiles WHERE id = ${req.params.id}`)
   res.redirect("/profile")
 })
 

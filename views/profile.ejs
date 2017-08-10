@@ -16,6 +16,14 @@
         margin-top: -320px;
         font-family: 'Raleway', sans-serif;
       }
+      span {
+        color: white;
+        background-color: red;
+        padding: 5px;
+        font-size: 12pt;
+        font-weight: 700;
+        border-radius: 5px;
+      }
 
     </style>
   </head>
@@ -36,29 +44,32 @@
       <table class="table table-bordered">
         <tr>
           <th>ID</th>
-          <th class="text-center">Username</th>
-          <th class="text-center">User ID</th>
           <th class="text-center">Hometown</th>
           <th class="text-center">Birth Year</th>
           <th class="text-center">Relationship Status</th>
+          <th class="text-center">Username</th>
           <th class="text-center" colspan="2">Action</th>
         </tr>
         <% data.forEach(d => { %>
           <tr>
-            <td><%= d.id %></td>
-            <td><%= d.username %></td>
-            <td><%= d.user_id %></td>
+            <td><%= d.profile_id %></td>
             <td><%= d.hometown %></td>
             <td><%= d.birth_year %></td>
             <td><%= d.relationship_status %></td>
-            <td><a href="/profile/edit-profile/<%= d.user_id%>"><button class="btn btn-info" type="button" name="button">Edit</button></a></td>
-            <td><a href="/profile/delete/<%= d.user_id%>"><button class="btn btn-info" type="button" name="button">Delete</button></a></td>
+            <td><%= d.username %></td>
+            <td><a href="/profile/edit-profile/<%= d.profile_id%>"><button class="btn btn-info" type="button" name="button">Edit</button></a></td>
+            <td><a href="/profile/delete/<%= d.profile_id%>"><button class="btn btn-info" type="button" name="button">Delete</button></a></td>
           </tr>
         <% }) %>
       </table>
+      <br>
       <h3>Add Profile</h3>
       <form action="/profile" method="post">
         <div>
+          <% if(pesan) { %>
+            <span>USERNAME ALREADY EXIST</span>
+          <% } %>
+          <br>
           <label>Select Username</label>
           <select class="form-control" name="user_id">
             <% dataUser.forEach(b=> { %>

@@ -17,11 +17,35 @@
         font-family: 'Raleway', sans-serif;
       }
 
+      span {
+        color: white;
+        background-color: red;
+        padding: 5px;
+        font-size: 12pt;
+        font-weight: 700;
+        border-radius: 5px;
+      }
+
     </style>
   </head>
   <body>
     <h2>Edit Profile</h2>
-    <form action="/profile/edit-profile/<%= data.user_id %>" method="post">
+    <form action="/profile/edit-profile/<%= data.id %>" method="post">
+      <label>Select Username</label>
+      <% if(pesan2) { %>
+        <span>USERNAME ALREADY EXIST</span>
+      <% } %>
+      <select class="form-control" name="user_id">
+      <% let pilih = "" %>
+      <% let nama = "" %>
+        <% dataUser.forEach(item => { %>
+          <% if(item.id === data.user_id) { %>
+            <% pilih = "selected" %>
+            <% nama = item.username %>
+          <% } %>
+      <% }) %>
+          <option class="form-control" value=<%= data.user_id %> <%= pilih %>><%= nama %></option>
+      </select><br>
       <div class="form-group">
         <label for="hometown">Hometown:</label>
         <input type="text" name="hometown" class="form-control" id="exampleInputEmail1" value="<%= data.hometown%>">
